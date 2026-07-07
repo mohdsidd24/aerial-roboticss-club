@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Aerial Robotics Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #080c10;
+    --bg2: #0d1218;
+    --bg3: #111820;
+    --accent: #00d4ff;
+    --accent2: #ff4d00;
+    --accent3: #00ff88;
+    --text: #e8edf2;
+    --muted: #6b7a8d;
+    --border: rgba(0,212,255,0.15);
+    --border2: rgba(0,212,255,0.08);
+    --grid: rgba(0,212,255,0.04);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── GRID BG ── */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events:none; z-index:0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0 4vw;
+    height:64px;
+    background: rgba(8,12,16,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border2);
+  }
+
+  .nav-logo {
+    font-family:'Orbitron',monospace;
+    font-size:14px; font-weight:700;
+    letter-spacing:0.15em;
+    color:var(--accent);
+    text-decoration:none;
+  }
+
+  .nav-links {
+    display:flex; gap:2rem; list-style:none;
+  }
+
+  .nav-links a {
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; font-weight:500;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--muted); text-decoration:none;
+    transition:color 0.2s;
+  }
+
+  .nav-links a:hover { color:var(--accent); }
+
+  .nav-cta {
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; font-weight:500;
+    letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--bg); background:var(--accent);
+    padding:8px 20px; border:none; cursor:pointer;
+    text-decoration:none;
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-cta:hover { background:#fff; }
+
+  /* ── SECTIONS ── */
+  section { position:relative; z-index:1; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height:100vh;
+    display:flex; align-items:center; justify-content:center;
+    padding: 100px 4vw 80px;
+    text-align:center;
+    overflow:hidden;
+  }
+
+  .hero-inner { max-width:900px; }
+
+  .hero-tag {
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:0.15em; text-transform:uppercase;
+    color:var(--accent);
+    border:1px solid var(--border);
+    padding:6px 16px;
+    margin-bottom:2rem;
+  }
+
+  .hero-tag::before {
+    content:'';
+    width:6px; height:6px;
+    background:var(--accent);
+    border-radius:50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100%{opacity:1;} 50%{opacity:0.3;}
+  }
+
+  h1 {
+    font-family:'Orbitron',monospace;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight:900;
+    line-height:1;
+    letter-spacing:-0.02em;
+    margin-bottom:1.5rem;
+  }
+
+  h1 span {
+    display:block;
+    background: linear-gradient(135deg, var(--accent) 0%, #7b6fff 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    background-clip:text;
+  }
+
+  .hero-sub {
+    font-size:1.1rem; font-weight:300;
+    color:var(--muted); max-width:600px; margin:0 auto 2.5rem;
+    line-height:1.8;
+  }
+
+  .hero-tags {
+    display:flex; flex-wrap:wrap; gap:10px;
+    justify-content:center; margin-bottom:2.5rem;
+  }
+
+  .tag {
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--accent); border:1px solid var(--border);
+    padding:5px 14px; background:rgba(0,212,255,0.04);
+  }
+
+  .hero-btns {
+    display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
+  }
+
+  .btn-primary {
+    font-family:'Orbitron',monospace;
+    font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--bg); background:var(--accent);
+    padding:14px 32px; border:none; cursor:pointer;
+    text-decoration:none; display:inline-block;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: all 0.2s;
+  }
+  .btn-primary:hover { background:#fff; transform:translateY(-2px); }
+
+  .btn-secondary {
+    font-family:'Orbitron',monospace;
+    font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--accent);
+    padding:14px 32px;
+    border:1px solid var(--border);
+    background:transparent; cursor:pointer;
+    text-decoration:none; display:inline-block;
+    transition:all 0.2s;
+  }
+  .btn-secondary:hover { background:rgba(0,212,255,0.06); transform:translateY(-2px); }
+
+  /* ── DRONE SVG ── */
+  .drone-graphic {
+    margin:3rem auto 0;
+    width:100%; max-width:700px;
+    opacity:0.7;
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-wrap { padding:100px 4vw; max-width:1200px; margin:0 auto; }
+
+  .section-label {
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--accent2);
+    margin-bottom:0.5rem;
+  }
+
+  .section-title {
+    font-family:'Orbitron',monospace;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight:700;
+    line-height:1.1;
+    margin-bottom:1rem;
+  }
+
+  .section-desc {
+    color:var(--muted); font-weight:300;
+    max-width:560px; font-size:1rem; line-height:1.8;
+    margin-bottom:3rem;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border:none;
+    border-top:1px solid var(--border2);
+    margin:0;
+  }
+
+  /* ── MISSION STATS ── */
+  .stats-row {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+    gap:1px;
+    background:var(--border2);
+    border:1px solid var(--border2);
+    margin-bottom:4rem;
+  }
+
+  .stat {
+    background:var(--bg2);
+    padding:2rem 1.5rem;
+    text-align:center;
+  }
+
+  .stat-num {
+    font-family:'Orbitron',monospace;
+    font-size:2.2rem; font-weight:900;
+    color:var(--accent);
+    display:block; margin-bottom:4px;
+  }
+
+  .stat-label {
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ── MISSION SECTIONS ── */
+  .two-col {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:4rem; align-items:center;
+    margin-bottom:6rem;
+  }
+
+  .two-col.reverse { direction:rtl; }
+  .two-col.reverse > * { direction:ltr; }
+
+  .col-content h2 {
+    font-family:'Orbitron',monospace;
+    font-size:1.8rem; font-weight:700;
+    margin-bottom:1rem; line-height:1.2;
+  }
+
+  .col-content p {
+    color:var(--muted); font-weight:300;
+    line-height:1.8; margin-bottom:1rem;
+  }
+
+  .feature-list {
+    list-style:none; margin-top:1.5rem;
+  }
+
+  .feature-list li {
+    display:flex; align-items:flex-start; gap:10px;
+    padding:8px 0;
+    border-bottom:1px solid var(--border2);
+    font-size:0.9rem; color:var(--text);
+    font-weight:300;
+  }
+
+  .feature-list li::before {
+    content:'//';
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; color:var(--accent);
+    flex-shrink:0; padding-top:2px;
+  }
+
+  /* ── AIRCRAFT CARDS ── */
+  .cards-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    gap:1px;
+    background:var(--border2);
+    border:1px solid var(--border2);
+  }
+
+  .card {
+    background:var(--bg2);
+    padding:2rem;
+    position:relative;
+    overflow:hidden;
+    transition:background 0.25s;
+  }
+
+  .card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0;
+    height:2px;
+    background:var(--accent);
+    transform:scaleX(0);
+    transform-origin:left;
+    transition:transform 0.3s;
+  }
+
+  .card:hover { background:var(--bg3); }
+  .card:hover::before { transform:scaleX(1); }
+
+  .card-num {
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px; color:var(--muted);
+    letter-spacing:0.1em;
+    margin-bottom:1.2rem;
+  }
+
+  .card-icon {
+    width:48px; height:48px;
+    margin-bottom:1.2rem;
+  }
+
+  .card h3 {
+    font-family:'Orbitron',monospace;
+    font-size:1rem; font-weight:700;
+    margin-bottom:0.6rem;
+    letter-spacing:0.04em;
+  }
+
+  .card p {
+    color:var(--muted); font-size:0.88rem;
+    font-weight:300; line-height:1.7;
+  }
+
+  .card-tag {
+    display:inline-block; margin-top:1rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--accent2); border:1px solid rgba(255,77,0,0.3);
+    padding:3px 10px; background:rgba(255,77,0,0.06);
+  }
+
+  /* ── WEAPON SYSTEM ── */
+  .weapon-section {
+    background:var(--bg2);
+    border:1px solid var(--border);
+    padding:3rem;
+    margin:3rem 0;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .weapon-section::before {
+    content:'WEAPONS SYSTEM';
+    position:absolute; top:1.5rem; right:2rem;
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:0.2em;
+    color:rgba(255,77,0,0.3);
+  }
+
+  .weapon-section h2 {
+    font-family:'Orbitron',monospace;
+    font-size:1.8rem; font-weight:700;
+    color:var(--accent2); margin-bottom:1rem;
+  }
+
+  .weapon-section p {
+    color:var(--muted); font-weight:300;
+    max-width:620px; line-height:1.8; margin-bottom:2rem;
+  }
+
+  .weapon-modes {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:1px;
+    background:rgba(255,77,0,0.1);
+    border:1px solid rgba(255,77,0,0.2);
+  }
+
+  .weapon-mode {
+    background:var(--bg);
+    padding:1.5rem;
+  }
+
+  .weapon-mode h4 {
+    font-family:'Orbitron',monospace;
+    font-size:0.9rem; font-weight:700;
+    color:var(--accent2); margin-bottom:0.5rem;
+  }
+
+  .weapon-mode p {
+    font-size:0.85rem; color:var(--muted);
+    font-weight:300; line-height:1.6; margin:0;
+  }
+
+  /* ── TEAMS ── */
+  .teams-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+    gap:1.5rem;
+  }
+
+  .team-card {
+    border:1px solid var(--border2);
+    padding:1.8rem;
+    background:var(--bg2);
+    transition:border-color 0.2s, background 0.2s;
+  }
+
+  .team-card:hover {
+    border-color:var(--border);
+    background:var(--bg3);
+  }
+
+  .team-tag {
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px; letter-spacing:0.15em; text-transform:uppercase;
+    padding:3px 10px; margin-bottom:1rem; display:inline-block;
+  }
+
+  .tag-cs { color:#7b6fff; border:1px solid rgba(123,111,255,0.3); background:rgba(123,111,255,0.06); }
+  .tag-me { color:var(--accent2); border:1px solid rgba(255,77,0,0.3); background:rgba(255,77,0,0.06); }
+  .tag-ee { color:var(--accent); border:1px solid var(--border); background:rgba(0,212,255,0.04); }
+  .tag-all { color:var(--accent3); border:1px solid rgba(0,255,136,0.3); background:rgba(0,255,136,0.06); }
+
+  .team-card h3 {
+    font-family:'Orbitron',monospace;
+    font-size:0.95rem; font-weight:700;
+    margin-bottom:0.6rem; letter-spacing:0.04em;
+  }
+
+  .team-card p {
+    font-size:0.85rem; color:var(--muted);
+    font-weight:300; line-height:1.7;
+  }
+
+  /* ── ROADMAP ── */
+  .roadmap {
+    position:relative;
+    padding-left:2rem;
+  }
+
+  .roadmap::before {
+    content:'';
+    position:absolute; left:0; top:0; bottom:0;
+    width:1px; background:var(--border);
+  }
+
+  .roadmap-item {
+    position:relative;
+    padding:0 0 3rem 2rem;
+  }
+
+  .roadmap-item::before {
+    content:'';
+    position:absolute; left:-4px; top:4px;
+    width:9px; height:9px;
+    border:1px solid var(--accent);
+    background:var(--bg);
+    transform:rotate(45deg);
+  }
+
+  .roadmap-item.active::before {
+    background:var(--accent);
+  }
+
+  .roadmap-date {
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:0.4rem;
+  }
+
+  .roadmap-item h3 {
+    font-family:'Orbitron',monospace;
+    font-size:1rem; font-weight:700;
+    margin-bottom:0.4rem;
+  }
+
+  .roadmap-item p {
+    color:var(--muted); font-size:0.88rem;
+    font-weight:300; line-height:1.7;
+  }
+
+  /* ── COMPETITION ── */
+  .comp-grid {
+    display:grid; grid-template-columns:1fr 1fr; gap:1px;
+    background:var(--border2); border:1px solid var(--border2);
+  }
+
+  .comp-item {
+    background:var(--bg2); padding:2rem;
+    transition:background 0.2s;
+  }
+
+  .comp-item:hover { background:var(--bg3); }
+
+  .comp-item h3 {
+    font-family:'Orbitron',monospace;
+    font-size:0.95rem; font-weight:700;
+    color:var(--accent); margin-bottom:0.5rem;
+    letter-spacing:0.04em;
+  }
+
+  .comp-item p {
+    color:var(--muted); font-size:0.85rem;
+    font-weight:300; line-height:1.7;
+  }
+
+  /* ── CTA SECTION ── */
+  #join {
+    padding:120px 4vw;
+    text-align:center;
+    border-top:1px solid var(--border2);
+    position:relative;
+  }
+
+  #join::before {
+    content:'';
+    position:absolute; top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    width:600px; height:600px;
+    background:radial-gradient(circle, rgba(0,212,255,0.04) 0%, transparent 70%);
+    pointer-events:none;
+  }
+
+  #join h2 {
+    font-family:'Orbitron',monospace;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight:900; margin-bottom:1.5rem;
+    line-height:1.1;
+  }
+
+  #join p {
+    color:var(--muted); font-weight:300;
+    font-size:1.05rem; max-width:560px;
+    margin:0 auto 2.5rem; line-height:1.8;
+  }
+
+  .contact-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:1px;
+    background:var(--border2);
+    border:1px solid var(--border2);
+    max-width:700px; margin:3rem auto 0;
+  }
+
+  .contact-item {
+    background:var(--bg2); padding:1.5rem;
+    text-align:left;
+  }
+
+  .contact-label {
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:0.4rem;
+  }
+
+  .contact-val {
+    font-size:0.9rem; color:var(--text); font-weight:500;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top:1px solid var(--border2);
+    padding:2rem 4vw;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:1rem;
+    z-index:1; position:relative;
+  }
+
+  .footer-logo {
+    font-family:'Orbitron',monospace;
+    font-size:12px; font-weight:700;
+    letter-spacing:0.15em; color:var(--accent);
+  }
+
+  .footer-copy {
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px; letter-spacing:0.08em;
+    color:var(--muted);
+  }
+
+  /* ── DRONE SVG ILLUSTRATION ── */
+  .vis {
+    width:100%; aspect-ratio:16/7;
+    background:var(--bg2);
+    border:1px solid var(--border2);
+    position:relative; overflow:hidden;
+  }
+
+  /* ── ANIMATED SCAN LINE ── */
+  .scan-line {
+    position:absolute; left:0; right:0; height:1px;
+    background:linear-gradient(90deg, transparent, var(--accent), transparent);
+    animation: scandown 4s linear infinite;
+    opacity:0.5;
+  }
+  @keyframes scandown {
+    0%{top:-2px;} 100%{top:100%;}
+  }
+
+  @media(max-width:768px){
+    .two-col, .comp-grid { grid-template-columns:1fr; }
+    .two-col.reverse { direction:ltr; }
+    nav .nav-links { display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">ARC // STONY BROOK</a>
+  <ul class="nav-links">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#builds">Builds</a></li>
+    <li><a href="#teams">Teams</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#join">Join</a></li>
+  </ul>
+  <a href="#join" class="nav-cta">Apply Now</a>
+</nav>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">Stony Brook University · Founding Year 2026–27 · Now Recruiting</div>
+    <h1>
+      Aerial<br/>
+      <span>Robotics Club</span>
+    </h1>
+    <p class="hero-sub">
+      A Stony Brook University student-led engineering team designing, fabricating, and deploying autonomous UAS platforms. Built to compete. Built to dominate.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">Computer Science</span>
+      <span class="tag">Mechanical Engineering</span>
+      <span class="tag">Electrical Engineering</span>
+      <span class="tag">Computer Engineering</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#join" class="btn-primary">Join the Crew</a>
+      <a href="#builds" class="btn-secondary">See What We Build</a>
+    </div>
+
+    <!-- Drone top-view SVG illustration -->
+    <div class="drone-graphic">
+      <svg viewBox="0 0 700 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- glow -->
+        <ellipse cx="350" cy="110" rx="200" ry="100" fill="url(#glow)"/>
+        <!-- arms -->
+        <line x1="350" y1="110" x2="200" y2="50"  stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.6"/>
+        <line x1="350" y1="110" x2="500" y2="50"  stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.6"/>
+        <line x1="350" y1="110" x2="200" y2="170" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.6"/>
+        <line x1="350" y1="110" x2="500" y2="170" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.6"/>
+        <!-- motors -->
+        <circle cx="200" cy="50"  r="22" fill="none" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.5"/>
+        <circle cx="500" cy="50"  r="22" fill="none" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.5"/>
+        <circle cx="200" cy="170" r="22" fill="none" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.5"/>
+        <circle cx="500" cy="170" r="22" fill="none" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.5"/>
+        <!-- props -->
+        <ellipse cx="200" cy="50"  rx="36" ry="5" fill="none" stroke="#00d4ff" stroke-width="0.7" stroke-opacity="0.35" transform="rotate(-30 200 50)"/>
+        <ellipse cx="500" cy="50"  rx="36" ry="5" fill="none" stroke="#00d4ff" stroke-width="0.7" stroke-opacity="0.35" transform="rotate(30 500 50)"/>
+        <ellipse cx="200" cy="170" rx="36" ry="5" fill="none" stroke="#00d4ff" stroke-width="0.7" stroke-opacity="0.35" transform="rotate(30 200 170)"/>
+        <ellipse cx="500" cy="170" rx="36" ry="5" fill="none" stroke="#00d4ff" stroke-width="0.7" stroke-opacity="0.35" transform="rotate(-30 500 170)"/>
+        <!-- body -->
+        <rect x="322" y="88" width="56" height="44" rx="4" fill="#0d1218" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.7"/>
+        <!-- center dot -->
+        <circle cx="350" cy="110" r="5" fill="#00d4ff" fill-opacity="0.8"/>
+        <!-- payload bay indicator -->
+        <rect x="335" y="115" width="30" height="12" rx="1" fill="none" stroke="#ff4d00" stroke-width="0.8" stroke-opacity="0.8"/>
+        <text x="350" y="124" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#ff4d00" fill-opacity="0.7">PAYLOAD</text>
+        <!-- crosshair target -->
+        <circle cx="580" cy="110" r="30" fill="none" stroke="#ff4d00" stroke-width="0.8" stroke-opacity="0.4"/>
+        <circle cx="580" cy="110" r="16" fill="none" stroke="#ff4d00" stroke-width="0.8" stroke-opacity="0.6"/>
+        <circle cx="580" cy="110" r="4"  fill="#ff4d00" fill-opacity="0.6"/>
+        <line x1="560" y1="110" x2="598" y2="110" stroke="#ff4d00" stroke-width="0.6" stroke-opacity="0.5"/>
+        <line x1="580" y1="90"  x2="580" y2="130" stroke="#ff4d00" stroke-width="0.6" stroke-opacity="0.5"/>
+        <text x="608" y="107" font-family="JetBrains Mono,monospace" font-size="7" fill="#ff4d00" fill-opacity="0.6">TARGET</text>
+        <text x="608" y="117" font-family="JetBrains Mono,monospace" font-size="7" fill="#ff4d00" fill-opacity="0.6">ACQUIRED</text>
+        <!-- dashed line drone to target -->
+        <line x1="378" y1="110" x2="545" y2="110" stroke="#ff4d00" stroke-width="0.6" stroke-opacity="0.3" stroke-dasharray="6,4"/>
+        <!-- labels -->
+        <text x="200" y="38" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#00d4ff" fill-opacity="0.5">M1</text>
+        <text x="500" y="38" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#00d4ff" fill-opacity="0.5">M2</text>
+        <text x="200" y="190" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#00d4ff" fill-opacity="0.5">M3</text>
+        <text x="500" y="190" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="7" fill="#00d4ff" fill-opacity="0.5">M4</text>
+        <!-- altitude / telemetry readouts -->
+        <text x="90" y="80"  font-family="JetBrains Mono,monospace" font-size="8" fill="#00d4ff" fill-opacity="0.45">ALT: 120m</text>
+        <text x="90" y="95"  font-family="JetBrains Mono,monospace" font-size="8" fill="#00d4ff" fill-opacity="0.45">SPD: 18 m/s</text>
+        <text x="90" y="110" font-family="JetBrains Mono,monospace" font-size="8" fill="#00d4ff" fill-opacity="0.45">HDG: 047°</text>
+        <text x="90" y="125" font-family="JetBrains Mono,monospace" font-size="8" fill="#00ff88" fill-opacity="0.5">SYS: NOMINAL</text>
+        <text x="90" y="140" font-family="JetBrains Mono,monospace" font-size="8" fill="#ff4d00" fill-opacity="0.6">PAYLOAD: ARMED</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ STATS ══════════════ -->
+<section id="mission">
+  <hr class="divider"/>
+  <div class="section-wrap">
+    <div class="stats-row">
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Engineering Disciplines</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">2+</span>
+        <span class="stat-label">Target Competitions</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">3D</span>
+        <span class="stat-label">Printing on Campus</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">∞</span>
+        <span class="stat-label">Room to Innovate</span>
+      </div>
+    </div>
+
+    <!-- MISSION -->
+    <div class="two-col">
+      <div class="col-content">
+        <div class="section-label">// Mission</div>
+        <h2>Build. Arm. Compete.</h2>
+        <p>
+          We're a student-founded, multidisciplinary engineering team building autonomous UAS platforms capable of target detection, tracking, and precision payload deployment.
+        </p>
+        <p>
+          No prior drone experience needed. Just a drive to build things that actually fly — and actually work under pressure.
+        </p>
+        <ul class="feature-list">
+          <li>Full aircraft design and fabrication lifecycle</li>
+          <li>On-campus 3D printing for rapid prototyping</li>
+          <li>Real autonomous systems: CV, GPS, flight control</li>
+          <li>Precision payload deployment (bomb bay / guided)</li>
+          <li>Compete nationally in SUAS and AUVC</li>
+        </ul>
+      </div>
+      <div>
+        <!-- Target detection visual -->
+        <div class="vis">
+          <div class="scan-line"></div>
+          <svg width="100%" height="100%" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <!-- grid lines -->
+            <line x1="0" y1="55"  x2="400" y2="55"  stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="0" y1="110" x2="400" y2="110" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="0" y1="165" x2="400" y2="165" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="100" y1="0" x2="100" y2="220" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="200" y1="0" x2="200" y2="220" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="300" y1="0" x2="300" y2="220" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <!-- detection box -->
+            <rect x="148" y="78" width="104" height="65" fill="none" stroke="#ff4d00" stroke-width="1.2" stroke-opacity="0.8"/>
+            <!-- corner ticks -->
+            <line x1="148" y1="78" x2="164" y2="78" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="148" y1="78" x2="148" y2="94" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="252" y1="78" x2="236" y2="78" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="252" y1="78" x2="252" y2="94" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="148" y1="143" x2="164" y2="143" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="148" y1="143" x2="148" y2="127" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="252" y1="143" x2="236" y2="143" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="252" y1="143" x2="252" y2="127" stroke="#ff4d00" stroke-width="2"/>
+            <!-- label -->
+            <text x="148" y="73" font-family="JetBrains Mono,monospace" font-size="8" fill="#ff4d00" fill-opacity="0.9">TARGET 94.7%</text>
+            <!-- center cross -->
+            <line x1="195" y1="108" x2="205" y2="108" stroke="#ff4d00" stroke-width="1"/>
+            <line x1="200" y1="103" x2="200" y2="113" stroke="#ff4d00" stroke-width="1"/>
+            <!-- status -->
+            <text x="10" y="20" font-family="JetBrains Mono,monospace" font-size="8" fill="#00d4ff" fill-opacity="0.6">CAMERA FEED · LIVE</text>
+            <circle cx="370" cy="14" r="4" fill="#00ff88" fill-opacity="0.7"/>
+            <text x="10" y="210" font-family="JetBrains Mono,monospace" font-size="8" fill="#00d4ff" fill-opacity="0.5">FRAME 2847 · 30FPS · CV PIPELINE ACTIVE</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ══════════════ BUILDS ══════════════ -->
+<section id="builds">
+  <div class="section-wrap">
+    <div class="section-label">// What We Build</div>
+    <h2 class="section-title">Aircraft Models</h2>
+    <p class="section-desc">
+      We design and fabricate multiple aircraft types, each serving a distinct mission profile. All vehicles target the SUAS / AUVC competition framework.
+    </p>
+
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-num">MODEL 01</div>
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="24" y1="24" x2="10" y2="12" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.7"/>
+          <line x1="24" y1="24" x2="38" y2="12" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.7"/>
+          <line x1="24" y1="24" x2="10" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.7"/>
+          <line x1="24" y1="24" x2="38" y2="36" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.7"/>
+          <circle cx="10" cy="12" r="5" fill="none" stroke="#00d4ff" stroke-width="1.2" stroke-opacity="0.6"/>
+          <circle cx="38" cy="12" r="5" fill="none" stroke="#00d4ff" stroke-width="1.2" stroke-opacity="0.6"/>
+          <circle cx="10" cy="36" r="5" fill="none" stroke="#00d4ff" stroke-width="1.2" stroke-opacity="0.6"/>
+          <circle cx="38" cy="36" r="5" fill="none" stroke="#00d4ff" stroke-width="1.2" stroke-opacity="0.6"/>
+          <rect x="20" y="20" width="8" height="8" rx="1" fill="none" stroke="#00d4ff" stroke-width="1.5"/>
+        </svg>
+        <h3>Quadcopter UAS</h3>
+        <p>Custom-built quad for hovering target detection and precision payload deployment. Equipped with GPS, computer vision, and autonomous flight.</p>
+        <span class="card-tag">Primary · SUAS</span>
+      </div>
+
+      <div class="card">
+        <div class="card-num">MODEL 02</div>
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="4" y1="28" x2="44" y2="28" stroke="#00d4ff" stroke-width="1.5" stroke-opacity="0.7"/>
+          <polygon points="24,10 44,28 4,28" fill="none" stroke="#00d4ff" stroke-width="1.2" stroke-opacity="0.5"/>
+          <line x1="12" y1="28" x2="8" y2="38" stroke="#00d4ff" stroke-width="1.2" stroke-opacity="0.6"/>
+          <line x1="36" y1="28" x2="40" y2="38" stroke="#00d4ff" stroke-width="1.2" stroke-opacity="0.6"/>
+          <line x1="24" y1="10" x2="24" y2="28" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.3"/>
+        </svg>
+        <h3>Fixed-Wing Aircraft</h3>
+        <p>Hand-launched airframe for long-endurance missions. Optimised for extended search area coverage and loitering over target zones.</p>
+        <span class="card-tag">Secondary · Endurance</span>
+      </div>
+
+      <div class="card">
+        <div class="card-num">MODEL 03</div>
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="18" y="18" width="12" height="18" rx="2" fill="none" stroke="#ff4d00" stroke-width="1.5" stroke-opacity="0.8"/>
+          <line x1="22" y1="18" x2="22" y2="10" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.5"/>
+          <line x1="26" y1="18" x2="26" y2="10" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.5"/>
+          <rect x="21" y="7" width="6" height="3" rx="0.5" fill="none" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.6"/>
+          <line x1="14" y1="36" x2="34" y2="36" stroke="#ff4d00" stroke-width="1" stroke-opacity="0.5" stroke-dasharray="3,2"/>
+          <text x="24" y="30" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="6" fill="#ff4d00" fill-opacity="0.8">BAY</text>
+        </svg>
+        <h3>Payload / Weapon Bay</h3>
+        <p>Modular payload system with bomb bay doors or externally-mounted guided munitions, controlled via a secondary RC transmitter.</p>
+        <span class="card-tag">Mission Critical</span>
+      </div>
+
+      <div class="card">
+        <div class="card-num">MODEL 04</div>
+        <svg class="card-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="20" width="36" height="8" rx="1" fill="none" stroke="#7b6fff" stroke-width="1.2" stroke-opacity="0.7"/>
+          <circle cx="24" cy="24" r="5" fill="none" stroke="#7b6fff" stroke-width="1.5" stroke-opacity="0.8"/>
+          <line x1="6" y1="24" x2="1" y2="24" stroke="#7b6fff" stroke-width="1" stroke-opacity="0.5"/>
+          <line x1="42" y1="24" x2="47" y2="24" stroke="#7b6fff" stroke-width="1" stroke-opacity="0.5"/>
+          <line x1="14" y1="20" x2="14" y2="14" stroke="#7b6fff" stroke-width="1" stroke-opacity="0.4"/>
+          <line x1="34" y1="20" x2="34" y2="14" stroke="#7b6fff" stroke-width="1" stroke-opacity="0.4"/>
+        </svg>
+        <h3>R&amp;D Experimental</h3>
+        <p>Long-cycle research projects — custom flight controllers, new airframe materials, AI-based autonomous target classification, and novel delivery mechanisms.</p>
+        <span class="card-tag">Research · 2+ yr</span>
+      </div>
+    </div>
+
+    <!-- WEAPON SYSTEM -->
+    <div class="weapon-section">
+      <h2>Weapons System</h2>
+      <p>
+        Our aircraft carry a dedicated mission payload controlled via a secondary RC transmitter — completely independent from flight control. Two deployment modes are in development.
+      </p>
+      <div class="weapon-modes">
+        <div class="weapon-mode">
+          <h4>Mode A — Bomb Bay Doors</h4>
+          <p>Internal bay with servo-actuated doors. Payload drops on operator command during pass over target. Clean aerodynamic profile during transit.</p>
+        </div>
+        <div class="weapon-mode">
+          <h4>Mode B — Guided Munitions</h4>
+          <p>Externally mounted guided payload released on command. Operator uses second controller to steer toward target after release.</p>
+        </div>
+        <div class="weapon-mode">
+          <h4>Safety Protocol</h4>
+          <p>Dual-key arming procedure. Payload system is electrically isolated from flight controller. Full ground-safe by default.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ══════════════ TEAMS ══════════════ -->
+<section id="teams">
+  <div class="section-wrap">
+    <div class="section-label">// Sub-Teams</div>
+    <h2 class="section-title">Find Your Role</h2>
+    <p class="section-desc">
+      Every member joins a focused sub-team based on their major and interests. No experience required — bring your curiosity.
+    </p>
+    <div class="teams-grid">
+      <div class="team-card">
+        <span class="team-tag tag-me">Mechanical Eng</span>
+        <h3>Airframe & Structures</h3>
+        <p>CAD design in SolidWorks, FEA simulation, 3D printing, CNC, composites. You design the wings, body, and landing gear.</p>
+      </div>
+      <div class="team-card">
+        <span class="team-tag tag-ee">Electrical Eng</span>
+        <h3>Avionics & Power</h3>
+        <p>PCB design, motor/ESC selection, wiring harnesses, power systems, sensor integration (IMU, GPS, barometer, lidar).</p>
+      </div>
+      <div class="team-card">
+        <span class="team-tag tag-cs">Computer Science</span>
+        <h3>Software & Autonomy</h3>
+        <p>ArduPilot / PX4 stack, ROS2 nodes, computer vision target detection with OpenCV/YOLO, ground control station development.</p>
+      </div>
+      <div class="team-card">
+        <span class="team-tag tag-cs">Computer Eng</span>
+        <h3>Embedded Systems</h3>
+        <p>Flight controller firmware, payload control microcontrollers, real-time telemetry, hardware-software integration.</p>
+      </div>
+      <div class="team-card">
+        <span class="team-tag tag-me">Mechanical Eng</span>
+        <h3>Propulsion & Payload</h3>
+        <p>Motor sizing, propeller selection, power-to-weight optimisation, bomb bay door mechanisms, and actuation systems.</p>
+      </div>
+      <div class="team-card">
+        <span class="team-tag tag-all">All Majors</span>
+        <h3>Systems Integration</h3>
+        <p>Test planning, subsystem integration, documentation, competition strategy. The glue that makes the whole aircraft work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ══════════════ COMPETITIONS ══════════════ -->
+<section id="compete">
+  <div class="section-wrap">
+    <div class="section-label">// Target Competitions</div>
+    <h2 class="section-title">Compete Nationally</h2>
+    <p class="section-desc">Year one focuses on two major competitions that directly match our build objectives.</p>
+    <div class="comp-grid">
+      <div class="comp-item">
+        <h3>SUAS — Student Unmanned Air Systems</h3>
+        <p>The gold standard of collegiate UAS competition. Autonomous flight, real-time target detection, object classification, and precision payload delivery. Hosted by AUVSI and run by the US Navy.</p>
+      </div>
+      <div class="comp-item">
+        <h3>AUVC — Aerial Underwater Vehicle Challenge</h3>
+        <p>Hybrid aerial and underwater systems challenge. Pushes teams to engineer multi-domain autonomous platforms. A strong differentiator for our R&amp;D division.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ══════════════ ROADMAP ══════════════ -->
+<section id="roadmap">
+  <div class="section-wrap">
+    <div class="section-label">// Year-1 Roadmap</div>
+    <h2 class="section-title">Launch Plan</h2>
+    <p class="section-desc">From zero to competition-ready in twelve months.</p>
+
+    <div class="roadmap">
+      <div class="roadmap-item active">
+        <div class="roadmap-date">Aug – Sep 2026</div>
+        <h3>Phase 01 — Founding</h3>
+        <p>Register club officially, recruit 15–20 charter members, elect leadership, secure faculty advisor and lab space.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">Sep – Oct 2026</div>
+        <h3>Phase 02 — Setup</h3>
+        <p>Purchase starter components, set up GitHub org and project tooling, establish weekly build sessions, onboard all sub-teams.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">Oct 2026 – Jan 2027</div>
+        <h3>Phase 03 — First Build</h3>
+        <p>Complete first full drone build. Maiden flight. Integrate CV pipeline. Begin payload bay prototyping via 3D printer.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">Jan – Apr 2027</div>
+        <h3>Phase 04 — Competition Prep</h3>
+        <p>Register for SUAS 2027, submit design report. Refine aircraft, integrate weapons system, full mission simulation runs.</p>
+      </div>
+      <div class="roadmap-item">
+        <div class="roadmap-date">May – Jun 2027</div>
+        <h3>Phase 05 — Compete</h3>
+        <p>Compete nationally. Present results to university. Debrief, document, and begin Year 2 recruitment cycle.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ══════════════ JOIN ══════════════ -->
+<section id="join">
+  <div class="hero-tag" style="display:inline-flex; margin-bottom:2rem;">Founding Member Applications Open</div>
+  <h2>Ready to Build<br/>Something That <span style="color:var(--accent)">Flies</span>?</h2>
+  <p>
+    We want engineers from CS, Mechanical, Electrical, and Computer Engineering. No prior drone experience needed. Just show up ready to build.
+  </p>
+  <div class="hero-btns">
+    <a href="https://forms.gle/tiUAR2E5tdQKUPP4A" target="_blank" class="btn-primary">Apply Now</a>
+    <a href="#mission" class="btn-secondary">Learn More</a>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <div class="contact-label">Interest Form</div>
+      <div class="contact-val"><a href="https://forms.gle/tiUAR2E5tdQKUPP4A" target="_blank" style="color:var(--accent); text-decoration:none;">Apply via Google Form →</a></div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-label">First Meeting</div>
+      <div class="contact-val">TBD — Fall 2026</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer>
+  <span class="footer-logo">AERIAL ROBOTICS CLUB //</span>
+  <span class="footer-copy">Founded 2026 · Stony Brook University · All Rights Reserved</span>
+</footer>
+
+<script>
+  // Smooth active nav highlight
+  const sections = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) cur = s.id;
+    });
+    links.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#'+cur ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
+</html>
