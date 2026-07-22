@@ -123,7 +123,7 @@
   footer { border-top:1px solid var(--border2); padding:2rem 4vw; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; z-index:1; position:relative; }
   .footer-logo { font-family:'Orbitron',monospace; font-size:12px; font-weight:700; letter-spacing:0.15em; color:var(--accent); }
   .footer-copy { font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.08em; color:var(--muted); }
-  .vis { width:100%; aspect-ratio:16/7; background:var(--bg2); border:1px solid var(--border2); position:relative; overflow:hidden; }
+  .vis { width:100%; aspect-ratio:1/1; background:var(--bg2); border:1px solid var(--border2); position:relative; overflow:hidden; }
   .scan-line { position:absolute; left:0; right:0; height:1px; background:linear-gradient(90deg, transparent, var(--accent), transparent); animation: scandown 4s linear infinite; opacity:0.5; }
   @keyframes scandown { 0%{top:-2px;} 100%{top:100%;} }
   .skip-link { position:absolute; left:-9999px; top:0; z-index:200; background:var(--accent); color:var(--bg); padding:10px 20px; font-family:'JetBrains Mono',monospace; font-size:12px; text-decoration:none; }
@@ -245,28 +245,28 @@
       <div>
         <div class="vis">
           <div class="scan-line"></div>
-          <svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-            <line x1="0" y1="55" x2="400" y2="55" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
-            <line x1="0" y1="110" x2="400" y2="110" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
-            <line x1="0" y1="165" x2="400" y2="165" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
-            <line x1="100" y1="0" x2="100" y2="220" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
-            <line x1="200" y1="0" x2="200" y2="220" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
-            <line x1="300" y1="0" x2="300" y2="220" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
-            <rect x="148" y="78" width="104" height="65" fill="none" stroke="#ff4d00" stroke-width="1.2" stroke-opacity="0.8"/>
-            <line x1="148" y1="78" x2="164" y2="78" stroke="#ff4d00" stroke-width="2"/>
-            <line x1="148" y1="78" x2="148" y2="94" stroke="#ff4d00" stroke-width="2"/>
-            <line x1="252" y1="78" x2="236" y2="78" stroke="#ff4d00" stroke-width="2"/>
-            <line x1="252" y1="78" x2="252" y2="94" stroke="#ff4d00" stroke-width="2"/>
-            <line x1="148" y1="143" x2="164" y2="143" stroke="#ff4d00" stroke-width="2"/>
-            <line x1="148" y1="143" x2="148" y2="127" stroke="#ff4d00" stroke-width="2"/>
-            <line x1="252" y1="143" x2="236" y2="143" stroke="#ff4d00" stroke-width="2"/>
-            <line x1="252" y1="143" x2="252" y2="127" stroke="#ff4d00" stroke-width="2"/>
-            <text x="148" y="73" font-family="JetBrains Mono,monospace" font-size="8" fill="#ff4d00" fill-opacity="0.9">MATCH 94.7%</text>
-            <line x1="195" y1="108" x2="205" y2="108" stroke="#ff4d00" stroke-width="1"/>
-            <line x1="200" y1="103" x2="200" y2="113" stroke="#ff4d00" stroke-width="1"/>
-            <text x="10" y="20" font-family="JetBrains Mono,monospace" font-size="8" fill="#00d4ff" fill-opacity="0.6">CAMERA FEED · LIVE</text>
-            <circle cx="370" cy="14" r="4" fill="#00ff88" fill-opacity="0.7"/>
-            <text x="10" y="210" font-family="JetBrains Mono,monospace" font-size="8" fill="#00d4ff" fill-opacity="0.5">FRAME 2847 · 30FPS · CV PIPELINE ACTIVE</text>
+          <svg aria-hidden="true" width="100%" height="100%" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+            <line x1="0" y1="75" x2="300" y2="75" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="0" y1="150" x2="300" y2="150" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="0" y1="225" x2="300" y2="225" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="75" y1="0" x2="75" y2="300" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="150" y1="0" x2="150" y2="300" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <line x1="225" y1="0" x2="225" y2="300" stroke="#00d4ff" stroke-width="0.3" stroke-opacity="0.15"/>
+            <rect x="111" y="106" width="78" height="89" fill="none" stroke="#ff4d00" stroke-width="1.2" stroke-opacity="0.8"/>
+            <line x1="111" y1="106" x2="125" y2="106" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="111" y1="106" x2="111" y2="120" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="189" y1="106" x2="175" y2="106" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="189" y1="106" x2="189" y2="120" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="111" y1="195" x2="125" y2="195" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="111" y1="195" x2="111" y2="181" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="189" y1="195" x2="175" y2="195" stroke="#ff4d00" stroke-width="2"/>
+            <line x1="189" y1="195" x2="189" y2="181" stroke="#ff4d00" stroke-width="2"/>
+            <text x="111" y="100" font-family="JetBrains Mono,monospace" font-size="8" fill="#ff4d00" fill-opacity="0.9">MATCH 94.7%</text>
+            <line x1="143" y1="150" x2="157" y2="150" stroke="#ff4d00" stroke-width="1"/>
+            <line x1="150" y1="143" x2="150" y2="157" stroke="#ff4d00" stroke-width="1"/>
+            <text x="10" y="24" font-family="JetBrains Mono,monospace" font-size="8" fill="#00d4ff" fill-opacity="0.6">CAMERA FEED · LIVE</text>
+            <circle cx="278" cy="18" r="4" fill="#00ff88" fill-opacity="0.7"/>
+            <text x="10" y="286" font-family="JetBrains Mono,monospace" font-size="8" fill="#00d4ff" fill-opacity="0.5">FRAME 2847 · 30FPS · CV PIPELINE ACTIVE</text>
           </svg>
         </div>
       </div>
